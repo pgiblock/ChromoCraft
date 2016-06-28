@@ -3,9 +3,7 @@
 
 #include <pthread.h>
 
-#include <AL/al.h>
-#include <AL/alut.h>
-
+#include "openal.h"
 #include "types.h"
 #include "path.h"
 #include "random.h"
@@ -44,9 +42,12 @@ typedef struct str_guistate_t {
 // For GUI and widget files
 ////////////////////////////////////////////////////////////
 #ifdef GUI_WIDGET
+// TODO: Move this to another file since it is impl-specific
+#ifdef __APPLE__
+#else
 #include <X11/Xlib.h>
-#include <GL/glx.h>
-#include <GL/gl.h>
+#endif
+#include "opengl.h"
 
 // Mouse button codes
 #define MOUSE_LEFT   1
@@ -87,12 +88,16 @@ typedef struct str_guistate_t {
 #define ISFAR(d) ((d) <= MAX_SELECT_DIST ? 1:0)
 
 // Holds what is needed to manage an opengl enabled window
+// TODO: Move this to another file since it is impl-specific
 typedef struct {
+#ifdef __APPLE__
+#else
   Display             *dpy;
   int                  screen;
   Window               win;
   GLXContext           ctx;
   XSetWindowAttributes attr;
+#endif
   int                  x, y;
   unsigned int         width,  height;
   unsigned int         pwidth, pheight;

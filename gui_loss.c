@@ -5,22 +5,18 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include <malloc.h>
 #include <sys/types.h>
 #include <sys/time.h>
 #include <stdarg.h>
 #include <unistd.h>
 #include <sys/wait.h>
 #include <sys/select.h>
-#include <X11/Xlib.h>
-#include <GL/glx.h>
-#include <GL/gl.h>
-#include <GL/glu.h>
 #include <pthread.h>
 #include <math.h> 
 #include <signal.h>
 #include <pwd.h>
 
+#include "opengl.h"
 #include "types.h"
 #include "util.h"
 #define GUI_WIDGET

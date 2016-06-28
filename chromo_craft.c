@@ -3,9 +3,8 @@
 #include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
-#include <AL/al.h>
-#include <AL/alut.h>
 
+#include "openal.h"
 #include "types.h"
 #include "util.h"
 #include "random.h"

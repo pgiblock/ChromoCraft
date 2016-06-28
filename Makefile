@@ -1,13 +1,24 @@
 CC=   gcc
 OPTS= -std=gnu99
 
-# Debug options
+# Platform-specific options
+ifeq "$(OSTYPE)" "darwin"
+# OS X release
+CFLAGS= -O3 -Wall 
+LIBS=   -lm -lpthread -framework OpenAL -framework OpenGL
+# OS X debug
+GCFLAGS= -g -Wall 
+GLIBS=   -lm -lpthread -framework OpenAL -framework OpenGL
+else ifeq "$(OS)" "Windows_NT"
+# TODO: Windows
+else
+# Linux release, et al
+CFLAGS= -O3 -Wall 
+LIBS=   -lm -lpthread -lGL -lGLU -lX11 -lopenal -lalut
+# Linux debug
 GCFLAGS= -g -Wall
 GLIBS=   -lm -lpthread -lGL -lGLU -lX11 -lopenal -lalut
-
-# Release options
-CFLAGS= -O3 -Wall
-LIBS=   -lm -lpthread -lGL -lGLU -lX11 -lopenal -lalut
+endif
 
 all: chromo_craft
 
